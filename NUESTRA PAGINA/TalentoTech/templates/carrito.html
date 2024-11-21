@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Carrito de Compras</title>
+</head>
+<body>
+<header>
+    <h1>Carrito de Compras</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/carrito">Carrito</a></li>
+    </ul>
+</nav>
+
+<section class="carrito">
+    <h2>Tu Carrito</h2>
+    <ul>
+        {% for item in carrito %}
+        <li>
+            {{ item.nombre }} - ${{ item.precio }} x {{ item.cantidad }}
+            <a href="/eliminar_del_carrito/{{ item.id }}">Eliminar</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Total: ${{ total }}</p>
+    <a href="/finalizar_compra" id="finalizar-compra">Finalizar Compra</a>
+</section>
+</body>
+</html>

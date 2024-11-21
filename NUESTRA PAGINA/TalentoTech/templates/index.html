@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>CAPESA - Productos</title>
+</head>
+<body>
+<header>
+    <h1>CAPESA - Camisetas de Fútbol</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/carrito">Carrito</a></li>
+    </ul>
+</nav>
+
+<section class="productos">
+    {% for producto in productos %}
+    <div class="producto">
+        <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}">
+        <h3>{{ producto.nombre }}</h3>
+        <p>${{ producto.precio }}</p>
+        <form action="/agregar_al_carrito" method="POST">
+            <input type="hidden" name="producto_id" value="{{ producto.id }}">
+            <input type="number" name="cantidad" value="1" min="1">
+            <button type="submit">Agregar al carrito</button>
+        </form>
+    </div>
+    {% endfor %}
+</section>
+</body>
+</html>
